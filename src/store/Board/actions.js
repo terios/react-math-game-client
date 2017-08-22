@@ -13,7 +13,8 @@ export const initiateGame = video => ({
   initialNumber
 });
 
-export const send = number => ({
+export const send = (number, operation) => ({
   type: SEND,
-  number
+  number,
+  operation
 });

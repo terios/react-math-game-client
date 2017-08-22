@@ -20,7 +20,7 @@ const Bubble = props => {
   return (
     <Wrapper>
       <TextContainer>
-        {props.data.bet} {props.data.action} = {props.data.result}
+        {props.data.bet} + ({props.data.action}) = {props.data.result}
       </TextContainer>
     </Wrapper>
   );

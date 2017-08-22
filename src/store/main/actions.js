@@ -14,6 +14,14 @@ export function setState(state) {
   };
 }
 
+export function identifyUser(name) {
+  console.log('hanaaaa', name);
+  return {
+    type: "IDENTIFY_USER",
+    name
+  };
+}
+
 export function setConnectionState(state, connected, id) {
   return {
     type: "SET_CONNECTION_STATE",

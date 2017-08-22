@@ -34,12 +34,13 @@ class InputSection extends React.Component {
   action(n) {
     this.setState({ disableSubmit: false });
     this.setState({ result: this.props.bet + n });
+    this.setState({ operation: n });
   }
 
   submit() {
     if (this.state.result % 3 === 0) {
-      console.log("yay");
-      this.props.send();
+      this.setState({ result: this.state.result / 3 });
+      this.props.send(this.state.result / 3, this.state.operation);
     } else {
       console.log("nay");
     }
@@ -50,12 +51,24 @@ class InputSection extends React.Component {
         <RaisedButton
           onTouchTap={this.submit}
           label="GO!"
-          disabled={this.state.disableSubmit}
+          disabled={!this.props.activate || this.state.disableSubmit}
         />
         <Manipulations>
-          <RaisedButton onTouchTap={() => this.action(-1)} label="-1" />
-          <RaisedButton onTouchTap={() => this.action(0)} label="0" />
-          <RaisedButton onTouchTap={() => this.action(1)} label="+1" />
+          <RaisedButton
+            disabled={!this.props.activate}
+            onTouchTap={() => this.action(-1)}
+            label="-1"
+          />
+          <RaisedButton
+            disabled={!this.props.activate}
+            onTouchTap={() => this.action(0)}
+            label="0"
+          />
+          <RaisedButton
+            disabled={!this.props.activate}
+            onTouchTap={() => this.action(1)}
+            label="+1"
+          />
         </Manipulations>
       </Wrapper>
     );

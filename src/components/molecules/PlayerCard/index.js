@@ -19,7 +19,7 @@ const Avatar = styled.div`
   border-radius: 50%;
   background-image: url(https://s-media-cache-ak0.pinimg.com/originals/0a/e9/34/0ae9343c91bebf124fd96d044844fa4c.jpg);
   background-size: cover;
-  filter: grayscale(${props => (props.status ? 0 : 1)});
+  filter: grayscale(${props => (props.ready ? 0 : 1)});
 `;
 
 const BigNumber = styled.div`font-size: 20px;`;
@@ -28,7 +28,7 @@ const PlayerCard = props => {
   return (
     <Wrapper>
       <Infos>
-        <Avatar status={props.status} />
+        <Avatar ready={props.ready} />
         <div>
           {props.name || "unknown"}
           <BigNumber>

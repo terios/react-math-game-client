@@ -4,14 +4,14 @@ import { routerMiddleware } from "react-router-redux";
 import { isDev, isBrowser, location } from "config";
 import reducer from "./reducer";
 
-import { setState, setConnectionState } from "./actions";
+import { setState, identifyUser } from "./actions";
 import socketMiddlware from "./socketMiddlware";
 import uuid from "uuid";
 
 function getClientId() {
   let id = localStorage.getItem("clientId");
   if (!id) {
-    id = uuid.v4();
+    id = Math.random().toString(36).substring(2, 15);
     localStorage.setItem("clientId", id);
   }
   return id;
@@ -32,13 +32,11 @@ const configureStore = (initialState, history) => {
   ];
 
   const store = createStore(reducer, initialState, compose(...enhancers));
-
+  socket.emit('register', {name:getClientId()});
   socket.on("state", state => store.dispatch(setState(state)));
-  ["connect"].forEach(ev =>
-    socket.on(ev, () =>
-      store.dispatch(setConnectionState(ev, socket.connected, getClientId()))
-    )
-  );
+  socket.on("identified", function(name){
+    console.log("pppppp ",name);
+  });
 
   if (module.hot) {
     module.hot.accept("./reducer", () => {

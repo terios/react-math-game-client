@@ -13,9 +13,10 @@ const reducer = (state = initialState, action) => {
       if (action.state && action.state.stats) {
         return {
           ...state,
-          bet: action.state.stats.bet,
+          bet: action.state.board.currentNumber,
           players: action.state.stats.players,
-          keys: action.state.stats.keys
+          keys: action.state.stats.keys,
+          ready: action.state.stats.ready
         };
       } else {
         return state;

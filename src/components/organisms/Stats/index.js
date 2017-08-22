@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { cyan300 } from "material-ui/styles/colors";
+import { cyan300, blueGrey300, grey50 } from "material-ui/styles/colors";
 
 import { PlayerCard } from "components";
 
@@ -31,7 +31,7 @@ const Bet = styled.div`
   display: block;
   width: 120px;
   height: 120px;
-  background-color: white;
+  background-color: ${props => (props.ready ? grey50 : blueGrey300 )};
   border: 4px solid ${cyan300};
   border-radius: 50%;
   text-align: center;
@@ -47,7 +47,7 @@ const Stats = props => {
           <PlayerCard
             name={props.player1.name}
             score={props.player1.score || 0}
-            status={props.player1.ready || false}
+            ready={props.player1.ready || false}
           />
         </Score>
         <div>
@@ -57,11 +57,11 @@ const Stats = props => {
           <PlayerCard
             name={props.player2.name}
             score={props.player2.score || 0}
-            status={props.player2.ready || false}
+            ready={props.player2.ready || false}
           />
         </Score>
       </ScoreBanner>
-      <Bet>
+      <Bet ready={props.ready}>
         {props.bet}
       </Bet>
     </Wrapper>

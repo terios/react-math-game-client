@@ -15,13 +15,15 @@ class StatsContainer extends React.Component {
 StatsContainer.propTypes = {
   player1: PropTypes.object,
   player2: PropTypes.object,
-  bet: PropTypes.number
+  bet: PropTypes.number,
+  ready: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  player1: state.stats.players[state.stats.keys[0]] || {},
-  player2: state.stats.players[state.stats.keys[1]] || {},
-  bet: state.stats.bet
+  player1: state.stats.players[0] || {},
+  player2: state.stats.players[1] || {},
+  bet: state.stats.bet,
+  ready: state.stats.ready
 });
 
 const mapDispatchToProps = dispatch => ({});

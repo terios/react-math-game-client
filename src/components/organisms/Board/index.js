@@ -28,7 +28,7 @@ const Board = props => {
       <TopSection>
         <BubblesList history={props.history} />
       </TopSection>
-      <InputSection bet={props.currentNumber} send={props.sendResult} />
+      <InputSection activate={props.currentPlayer.name===localStorage.getItem('clientId')} bet={props.currentNumber} send={props.sendResult} />
     </Wrapper>
   );
 };
